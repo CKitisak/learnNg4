@@ -1,0 +1,17 @@
+<h3>Top Heroes</h3>
+
+<div *ngIf="heroes.length > 0; else loadingView"
+  class="grid grid-pad">
+  <a *ngFor="let hero of heroes"
+    [routerLink]="['/heroes', hero.id]"
+    class="col-1-4">
+    <h4 class="module hero">
+      {{ hero.name }}
+    </h4>
+  </a>
+</div>
+<hero-search></hero-search>
+
+<ng-template #loadingView>
+  Loading...
+</ng-template>

@@ -1,0 +1,43 @@
+<div *ngIf="heroes; else loadingView">
+  <div>
+    <label>Hero name:</label>
+    <input #heroName />
+    <button (click)="add(heroName.value); heroName.value=''">
+      Add
+    </button>
+  </div>
+
+  <h2>
+    My heroes
+  </h2>
+
+  <ul class="heroes">
+    <li *ngFor="let hero of heroes"
+      [class.selected]="hero === selectedHero"
+      (click)="onSelect(hero)">
+      <span class="badge">
+        {{ hero.id }}
+      </span>
+      <span class="text">
+        {{ hero.name }}
+      </span>
+      <button class="delete"
+        (click)="delete(hero); $event.stopPropagation()">
+        x
+      </button>
+    </li>
+  </ul>
+
+  <div *ngIf="selectedHero">
+    <h2>
+      Your hero is {{ selectedHero.name | uppercase }} !!
+    </h2>
+    <button (click)="goToDetail()">
+      View Details
+    </button>
+  </div>
+</div>
+
+<ng-template #loadingView>
+  Loading...
+</ng-template>
